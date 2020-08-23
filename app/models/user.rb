@@ -10,4 +10,9 @@ class User < ApplicationRecord
   has_many :article_likes, dependent: :destroy
   has_many :articles, dependent: :destroy
   has_many :comments, dependent: :destroy
+
+  validates :name, presence: true
+  # validates :email, presence: true, uniqueness: true
+  # validates :password, presence: true
+  # ※ email と password に関する validation は devise_token_auth のデフォルトを使用することとしたので、上記には追加しなかった。
 end
