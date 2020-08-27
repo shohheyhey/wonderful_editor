@@ -5,7 +5,9 @@ RSpec.describe "Api/V1::Auth::Registrations", type: :request do
     subject { post(api_v1_user_registration_path, params: params) }
 
     context "必要な情報が存在するとき" do
-      let(:params) { attributes_for(:user) }
+      let(:params) do
+        { user: attributes_for(:user) }
+      end
 
       it "ユーザーの新規登録ができる" do
         expect { subject }.to change { User.count }.by(1)
@@ -26,7 +28,9 @@ RSpec.describe "Api/V1::Auth::Registrations", type: :request do
     end
 
     context "name が存在しないとき" do
-      let(:params) { attributes_for(:user, name: nil) }
+      let(:params) do
+        { user: attributes_for(:user, name: nil) }
+      end
 
       it "エラーする" do
         expect { subject }.to change { User.count }.by(0)
@@ -37,7 +41,9 @@ RSpec.describe "Api/V1::Auth::Registrations", type: :request do
     end
 
     context "email が存在しないとき" do
-      let(:params) { attributes_for(:user, email: nil) }
+      let(:params) do
+        { user: attributes_for(:user, email: nil) }
+      end
 
       it "エラーする" do
         expect { subject }.to change { User.count }.by(0)
@@ -48,7 +54,9 @@ RSpec.describe "Api/V1::Auth::Registrations", type: :request do
     end
 
     context "password が存在しないとき" do
-      let(:params) { attributes_for(:user, password: nil) }
+      let(:params) do
+        { user: attributes_for(:user, password: nil) }
+      end
 
       it "エラーする" do
         expect { subject }.to change { User.count }.by(0)
