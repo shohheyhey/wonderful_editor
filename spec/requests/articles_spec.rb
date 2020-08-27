@@ -44,7 +44,7 @@ RSpec.describe "Api::V1::Articles", type: :request do
       end
     end
   end
-  describe "POST /articles" do
+  fdescribe "POST /articles" do
     # subject {post(api_v1_articles_path, params: params)}
     subject { post(api_v1_articles_path, params: params, headers: headers) }
     let(:params){{article: attributes_for(:article)}}
@@ -58,6 +58,7 @@ RSpec.describe "Api::V1::Articles", type: :request do
       expect(res["title"]).to eq params[:article][:title]
       expect(res["body"]).to eq params[:article][:body]
       expect(response).to have_http_status(:ok)
+
     end
   end
   describe "PATCH /api/v1/articles/:id" do
