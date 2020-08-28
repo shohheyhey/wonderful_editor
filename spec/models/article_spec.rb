@@ -20,25 +20,30 @@
 require "rails_helper"
 
 RSpec.describe Article, type: :model do
-  context "titleが未入力の時" do
-    let(:article) { build(:article, title: nil) }
-    it "投稿に失敗する" do
-      expect(article).not_to be_valid
-    end
-  end
+  describe "正常系" do
+    context "タイトルと本文が入力されているとき" do
+      let(:article) { build(:article) }
 
-  context "bodyが未入力の時" do
-    let(:article) { build(:article, body: nil) }
-    it "投稿が失敗する" do
-      expect(article).not_to be_valid
+      it "下書き状態の記事が作成できる" do
+        expect(article).to be_valid
+        expect(article.status).to eq "draft"
+      end
     end
-  end
 
-  context "title, bodyが入力されている時" do
-    let(:user) { create(:user) }
-    let(:article) { build(:article, user_id: user.id) }
-    it "投稿が成功する" do
-      expect(article).to be_valid
+    context "status が下書き状態のとき" do
+      let(:article) { build(:article, :draft) }
+      it "記事を下書き状態で作成できる" do
+        expect(article).to be_valid
+        expect(article.status).to eq "draft"
+      end
+    end
+
+    context "status が公開状態のとき" do
+      let(:article) { build(:article, :published) }
+      it "記事を公開状態で作成できる" do
+        expect(article).to be_valid
+        expect(article.status).to eq "published"
+      end
     end
   end
 end

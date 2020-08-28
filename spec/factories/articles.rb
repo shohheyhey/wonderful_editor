@@ -21,6 +21,14 @@ FactoryBot.define do
   factory :article do
     title { "title_#{Faker::Lorem.word}" }
     body { "body_#{Faker::Lorem.sentence}" }
-    user 
+    user
+
+    trait :draft do
+      status {:draft}
+    end
+
+    trait :published do
+      status {:published}
+    end
   end
 end
