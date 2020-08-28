@@ -12,4 +12,3 @@ module Api::V1
       render json: article, serializer: Api::V1::ArticleSerializer
     end
   end
-end
