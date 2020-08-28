@@ -8,8 +8,9 @@ RSpec.describe "Api::V1::Articles", type: :request do
     let!(:article2) { create(:article, updated_at: 2.days.ago) }
     let!(:article3) { create(:article) }
 
-    it "記事の一覧が取得できる" do
+    fit "記事の一覧が取得できる" do
       subject
+      binding.pry
       res = JSON.parse(response.body)
       expect(res.length).to eq 3
 
@@ -26,7 +27,6 @@ RSpec.describe "Api::V1::Articles", type: :request do
       it "任意の記事の値が取得できる" do
         subject
         res = JSON.parse(response.body)
-
         expect(response).to have_http_status(:ok)
         expect(res["id"]).to eq article.id
         expect(res["title"]).to eq article.title
