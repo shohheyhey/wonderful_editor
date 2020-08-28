@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  body       :text
+#  status     :string           default("draft")
 #  title      :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -18,6 +19,6 @@
 #  fk_rails_...  (user_id => users.id)
 #
 class ArticleSerializer < ActiveModel::Serializer
-  attributes :id, :title, :body, :updated_at
+  attributes :id, :title, :body, :status, :updated_at
   belongs_to :user, serializer: Api::V1::UserSerializer
 end
