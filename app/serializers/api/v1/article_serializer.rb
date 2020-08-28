@@ -18,7 +18,7 @@
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class ArticleSerializer < ActiveModel::Serializer
+class Api::V1::ArticleSerializer < ActiveModel::Serializer
   attributes :id, :title, :body, :status, :updated_at
   belongs_to :user, serializer: Api::V1::UserSerializer
 end
