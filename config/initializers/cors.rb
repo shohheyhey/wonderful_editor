@@ -4,7 +4,8 @@
 # Read more: https://github.com/cyu/rack-cors
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins Settings.frontend.url
+    # origins Settings.frontend.url
+    origins "*"
     resource "*",
             headers: :any,
             expose: ["access-token", "expiry", "token-type", "uid", "client"],
